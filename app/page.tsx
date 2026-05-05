@@ -2,8 +2,8 @@ export default function Home() {
   const skills = [
     { icon: "🖥️", name: "Operating System", tags: ["Windows Server", "Linux Debian", "Ubuntu", "Windows 11"] },
     { icon: "🗄️", name: "Database", tags: ["MS-SQL", "Oracle", "PostgreSQL", "MariaDB", "MySQL", "SQLite"] },
-    { icon: "💻", name: "Language", tags: ["Node.js", "JavaScript", "C# / WPF", "React", "Vue", "Java", "Rust"] },
-    { icon: "⚙️", name: "Specialty", tags: ["IoT Middleware", "Edge Computing", "Azure", "Vultr", "Socket 통신", "REST API", "SCADA"] },
+    { icon: "💻", name: "Language", tags: ["Node.js", "Next.js", "JavaScript", "C# / WPF", "React", "Vue", "Java", "Rust"] },
+    { icon: "⚙️", name: "Specialty", tags: ["IoT Middleware", "Edge Computing", "Azure", "Vultr", "Vercel", "Socket 통신", "REST API", "SCADA"] },
   ];
 
   const projects = [
