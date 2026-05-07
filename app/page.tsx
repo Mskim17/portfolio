@@ -202,32 +202,40 @@ export default function Home() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" style={{ padding: "70px 20px", background: "var(--bg)", borderTop: "1px solid var(--border)" }}>
+      <section id="contact" style={{ padding: "100px 40px", background: "var(--bg)", borderTop: "1px solid var(--border)" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <p style={{ fontFamily: "monospace", fontSize: 11, color: "var(--accent)", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16 }}>// 04. Contact</p>
-          <div style={{ fontFamily: "serif", fontSize: "clamp(36px,6vw,72px)", lineHeight: 1.05, marginBottom: 16, color: "var(--text)" }}>
+          <div style={{ fontFamily: "serif", fontSize: "clamp(40px,6vw,72px)", lineHeight: 1.05, marginBottom: 16, color: "var(--text)" }}>
             함께<br /><em style={{ fontStyle: "italic", color: "var(--accent)" }}>만들어요</em>
           </div>
-          <p style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.8, marginBottom: 40 }}>
+          <p style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.8, marginBottom: 48 }}>
             산업 현장부터 사회적 가치까지 —<br />
             기술로 세상을 조금 더 나은 곳으로<br />
             만들고 싶은 분과 함께하고 싶습니다.
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {[
-              { icon: "💊", label: "EasyYak 서비스", sub: "mskhouse.iptime.org:9918", href: "http://mskhouse.iptime.org:9918" },
-              { icon: "🌡️", label: "홈 IoT 대시보드", sub: "mskhouse.iptime.org:3324", href: "http://mskhouse.iptime.org:3324" },
-              { icon: "🐙", label: "GitHub", sub: "github.com/Mskim17", href: "https://github.com/Mskim17" },
-            ].map((c) => (
-              <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", gap: 16, padding: "18px 20px", background: "var(--card)", border: "1px solid var(--border)", textDecoration: "none" }}>
-                <span style={{ fontSize: 20 }}>{c.icon}</span>
-                <div>
-                  <div style={{ fontSize: 14, color: "var(--text)" }}>{c.label}</div>
-                  <div style={{ fontFamily: "monospace", fontSize: 11, color: "var(--muted)" }}>{c.sub}</div>
-                </div>
-              </a>
-            ))}
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
+
+            {/* 링크 */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {[
+                { icon: "💊", label: "EasyYak 서비스", sub: "mskhouse.iptime.org:9918", href: "http://mskhouse.iptime.org:9918" },
+                { icon: "🌡️", label: "홈 IoT 대시보드", sub: "mskhouse.iptime.org:3324", href: "http://mskhouse.iptime.org:3324" },
+                { icon: "🐙", label: "GitHub", sub: "github.com/Mskim17", href: "https://github.com/Mskim17" },
+              ].map((c) => (
+                <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
+                  style={{ display: "flex", alignItems: "center", gap: 16, padding: "18px 20px", background: "var(--card)", border: "1px solid var(--border)", textDecoration: "none", transition: "border-color 0.2s" }}>
+                  <span style={{ fontSize: 20 }}>{c.icon}</span>
+                  <div>
+                    <div style={{ fontSize: 14, color: "var(--text)" }}>{c.label}</div>
+                    <div style={{ fontFamily: "monospace", fontSize: 11, color: "var(--muted)" }}>{c.sub}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {/* 문의 폼 */}
+            <ContactForm />
           </div>
         </div>
       </section>
@@ -239,4 +247,99 @@ export default function Home() {
 
     </main>
   );
+  
+  function ContactForm() {
+    const [form, setForm] = useState({ name: "", email: "", message: "" });
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+    const handleSubmit = async () => {
+      if (!form.name || !form.email || !form.message) {
+        setStatus("error");
+        return;
+      }
+      setStatus("loading");
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        });
+        if (res.ok) {
+          setStatus("success");
+          setForm({ name: "", email: "", message: "" });
+        } else {
+          setStatus("error");
+        }
+      } catch {
+        setStatus("error");
+      }
+    };
+
+    const inputStyle = {
+      width: "100%",
+      padding: "12px 16px",
+      background: "var(--card)",
+      border: "1px solid var(--border)",
+      color: "var(--text)",
+      fontSize: 14,
+      fontFamily: "'Pretendard', sans-serif",
+      outline: "none",
+      marginBottom: 12,
+    };
+
+    return (
+      <div>
+        <input
+          placeholder="이름"
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          style={inputStyle}
+        />
+        <input
+          placeholder="이메일"
+          type="email"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          style={inputStyle}
+        />
+        <textarea
+          placeholder="문의 내용을 입력해주세요."
+          value={form.message}
+          onChange={(e) => setForm({ ...form, message: e.target.value })}
+          rows={5}
+          style={{ ...inputStyle, resize: "vertical", marginBottom: 16 }}
+        />
+        <button
+          onClick={handleSubmit}
+          disabled={status === "loading"}
+          style={{
+            width: "100%",
+            padding: "14px",
+            background: status === "loading" ? "var(--muted)" : "var(--accent)",
+            color: "white",
+            border: "none",
+            fontSize: 13,
+            fontFamily: "monospace",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            cursor: status === "loading" ? "not-allowed" : "pointer",
+            transition: "background 0.2s",
+          }}
+        >
+          {status === "loading" ? "전송 중..." : "문의 보내기"}
+        </button>
+
+        {status === "success" && (
+          <p style={{ marginTop: 12, fontSize: 14, color: "var(--accent2)" }}>
+            ✅ 문의가 전송됐어요. 빠르게 답변 드릴게요!
+          </p>
+        )}
+        {status === "error" && (
+          <p style={{ marginTop: 12, fontSize: 14, color: "#ff6b6b" }}>
+            ❌ 모든 항목을 입력해주세요.
+          </p>
+        )}
+      </div>
+    );
+  }
 }
