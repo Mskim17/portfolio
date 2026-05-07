@@ -48,17 +48,20 @@ export default function Home() {
     <main style={{ background: "var(--bg)", color: "var(--text)", fontFamily: "'Pretendard', -apple-system, sans-serif", fontWeight: 300, lineHeight: 1.7, overflowX: "hidden", transition: "background 0.3s, color 0.3s" }}>
 
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "20px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--nav-bg)", backdropFilter: "blur(20px)", borderBottom: "1px solid var(--border)" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "16px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--nav-bg)", backdropFilter: "blur(20px)", borderBottom: "1px solid var(--border)" }}>
         <div style={{ fontFamily: "serif", fontSize: 20, letterSpacing: "0.05em", color: "var(--text)" }}>
           MSKIM
         </div>
-        <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
-          {["Skills", "Projects", "개인작업", "Contact"].map((item) => (
-            <a key={item} href={`#${item === "Skills" ? "skills" : item === "Projects" ? "projects" : item === "개인작업" ? "personal" : "contact"}`}
-              style={{ fontSize: 13, letterSpacing: "0.08em", color: "var(--muted)", textDecoration: "none", textTransform: "uppercase" }}>
-              {item}
-            </a>
-          ))}
+        <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+          {/* 모바일에서 메뉴 숨김 */}
+          <div className="hidden md:flex" style={{ display: "none", gap: 24 }} id="nav-links">
+            {["Skills", "Projects", "개인작업", "Contact"].map((item) => (
+              <a key={item} href={`#${item === "Skills" ? "skills" : item === "Projects" ? "projects" : item === "개인작업" ? "personal" : "contact"}`}
+                style={{ fontSize: 13, letterSpacing: "0.08em", color: "var(--muted)", textDecoration: "none", textTransform: "uppercase" }}>
+                {item}
+              </a>
+            ))}
+          </div>
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -137,20 +140,32 @@ export default function Home() {
           <h2 style={{ fontFamily: "serif", fontSize: "clamp(32px,5vw,52px)", marginBottom: 60, color: "var(--text)" }}>주요 <em style={{ fontStyle: "italic", color: "var(--accent2)" }}>프로젝트</em></h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
             {projects.map((p) => (
-              <motion.div key={p.num} initial={{ opacity: 0, x: -60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-                style={{ background: "var(--card)", padding: 40, display: "grid", gridTemplateColumns: "auto 1fr auto", gap: 32, alignItems: "start" }}>
-                <div style={{ fontFamily: "serif", fontSize: 48, color: "var(--border)", lineHeight: 1, minWidth: 60 }}>{p.num}</div>
+              <motion.div key={p.num}
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                style={{
+                  background: "var(--card)",
+                  padding: "24px 20px",
+                  display: "grid",
+                  gridTemplateColumns: "40px 1fr",  // 모바일 기준 2컬럼
+                  gap: 16,
+                  alignItems: "start"
+                }}
+              >
+                <div style={{ fontFamily: "serif", fontSize: 28, color: "var(--border)", lineHeight: 1 }}>{p.num}</div>
                 <div>
-                  <p style={{ fontFamily: "monospace", fontSize: 11, color: "var(--accent2)", letterSpacing: "0.1em", marginBottom: 8 }}>{p.period}</p>
-                  <h3 style={{ fontSize: 20, fontWeight: 500, marginBottom: 12, color: "var(--text)" }}>{p.name}</h3>
-                  <p style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.8, marginBottom: 16 }}>{p.desc}</p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  <p style={{ fontFamily: "monospace", fontSize: 11, color: "var(--accent2)", letterSpacing: "0.1em", marginBottom: 6 }}>{p.period}</p>
+                  <p style={{ fontFamily: "monospace", fontSize: 11, color: "var(--muted)", marginBottom: 8 }}>{p.company.replace("\n", " · ")}</p>
+                  <h3 style={{ fontSize: 17, fontWeight: 600, marginBottom: 10, color: "var(--text)" }}>{p.name}</h3>
+                  <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.8, marginBottom: 14 }}>{p.desc}</p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                     {p.tags.map((t) => (
                       <span key={t} style={{ fontFamily: "monospace", fontSize: 11, padding: "3px 8px", background: "var(--project-tag-bg)", border: "1px solid var(--border)", color: "var(--muted)" }}>{t}</span>
                     ))}
                   </div>
                 </div>
-                <div style={{ fontFamily: "monospace", fontSize: 11, color: "var(--muted)", whiteSpace: "pre", paddingTop: 4 }}>{p.company}</div>
               </motion.div>
             ))}
           </div>
@@ -187,27 +202,25 @@ export default function Home() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" style={{ padding: "100px 40px", background: "var(--bg)", borderTop: "1px solid var(--border)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-          <div>
-            <p style={{ fontFamily: "monospace", fontSize: 11, color: "var(--accent)", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16 }}>// 04. Contact</p>
-            <div style={{ fontFamily: "serif", fontSize: "clamp(40px,6vw,72px)", lineHeight: 1.05, marginBottom: 24, color: "var(--text)" }}>
-              함께<br /><em style={{ fontStyle: "italic", color: "var(--accent)" }}>만들어요</em>
-            </div>
-            <p style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.8 }}>
-              산업 현장부터 사회적 가치까지 —<br />
-              기술로 세상을 조금 더 나은 곳으로<br />
-              만들고 싶은 분과 함께하고 싶습니다.
-            </p>
+      <section id="contact" style={{ padding: "70px 20px", background: "var(--bg)", borderTop: "1px solid var(--border)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <p style={{ fontFamily: "monospace", fontSize: 11, color: "var(--accent)", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16 }}>// 04. Contact</p>
+          <div style={{ fontFamily: "serif", fontSize: "clamp(36px,6vw,72px)", lineHeight: 1.05, marginBottom: 16, color: "var(--text)" }}>
+            함께<br /><em style={{ fontStyle: "italic", color: "var(--accent)" }}>만들어요</em>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <p style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.8, marginBottom: 40 }}>
+            산업 현장부터 사회적 가치까지 —<br />
+            기술로 세상을 조금 더 나은 곳으로<br />
+            만들고 싶은 분과 함께하고 싶습니다.
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {[
               { icon: "💊", label: "EasyYak 서비스", sub: "mskhouse.iptime.org:9918", href: "http://mskhouse.iptime.org:9918" },
               { icon: "🌡️", label: "홈 IoT 대시보드", sub: "mskhouse.iptime.org:3324", href: "http://mskhouse.iptime.org:3324" },
               { icon: "🐙", label: "GitHub", sub: "github.com/Mskim17", href: "https://github.com/Mskim17" },
             ].map((c) => (
               <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", gap: 16, padding: "20px 24px", background: "var(--card)", border: "1px solid var(--border)", textDecoration: "none", transition: "border-color 0.2s" }}>
+                style={{ display: "flex", alignItems: "center", gap: 16, padding: "18px 20px", background: "var(--card)", border: "1px solid var(--border)", textDecoration: "none" }}>
                 <span style={{ fontSize: 20 }}>{c.icon}</span>
                 <div>
                   <div style={{ fontSize: 14, color: "var(--text)" }}>{c.label}</div>
