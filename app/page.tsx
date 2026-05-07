@@ -214,7 +214,7 @@ export default function Home() {
             만들고 싶은 분과 함께하고 싶습니다.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 60, alignItems: "start" }}>
 
             {/* 링크 */}
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -247,7 +247,7 @@ export default function Home() {
 
     </main>
   );
-  
+
   function ContactForm() {
     const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
