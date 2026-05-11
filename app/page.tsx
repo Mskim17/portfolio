@@ -221,6 +221,8 @@ export default function Home() {
             {/* 링크 */}
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {[
+                { icon: "🌙", label: "만세력 기반 운세", sub: "manse-fortune.vercel.app", href: "https://manse-fortune.vercel.app" },
+                { icon: "📍", label: "Signal Checker | 통신 속도 기록", sub: "signal-checker.vercel.app", href: "https://signal-checker.vercel.app" },
                 { icon: "💊", label: "EasyYak 서비스", sub: "mskhouse.iptime.org:9918", href: "http://mskhouse.iptime.org:9918" },
                 { icon: "🌡️", label: "홈 IoT 대시보드", sub: "mskhouse.iptime.org:3324", href: "http://mskhouse.iptime.org:3324" },
                 { icon: "🐙", label: "GitHub", sub: "github.com/Mskim17", href: "https://github.com/Mskim17" },
