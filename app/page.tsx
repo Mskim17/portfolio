@@ -34,6 +34,8 @@ const projects = [
 ];
 
 const personalProjects = [
+  { icon: "🌙", name: "만세력 기반 운세", desc: "사주 기반 일일 운세 분석.", tags: ["Next.js", "Custom Manse-ryeok Algorithm", "Vercel"], link: "https://manse-fortune.vercel.app", linkText: "서비스 바로가기 →", accent: "hsl(67, 73%, 46%)" },
+  { icon: "📍", name: "Signal Checker | 통신 속도 기록", desc: "GPS 위치 기반 인터넷 속도 측정 및 음영지역 기록.", tags: ["Next.js", "Leaflet.js", "Vercel"], link: "https://signal-checker.vercel.app/", linkText: "서비스 바로가기 →", accent: "rgb(2, 112, 35)" },
   { icon: "💊", name: "약봉투 글씨 읽어드려요 (EasyYak)", desc: "어르신들이 약봉지 사진을 찍으면 어려운 의학 용어를 쉬운 말로 변환해주는 웹 서비스. Google Vision API 기반 OCR + 맞춤 사전 치환 엔진. 라즈베리파이 홈서버 배포 운영 중.", tags: ["Node.js", "Google Vision API", "Raspberry Pi", "PWA"], link: "http://mskhouse.iptime.org:9918", linkText: "서비스 바로가기 →", accent: "#6c63ff" },
   { icon: "🌡️", name: "홈 IoT 대시보드", desc: "라즈베리파이 기반 온습도 센서 + 외부 날씨 API 연동 대시보드. 주식 크롤링 데이터까지 통합한 개인 홈 모니터링 시스템. 엣지컴퓨팅 기반 무비용 운영.", tags: ["Node.js", "IoT", "Raspberry Pi", "크롤링"], link: "http://mskhouse.iptime.org:3324", linkText: "대시보드 바로가기 →", accent: "#00d4aa" },
   { icon: "🔔", name: "복약 모니터링 시스템 (개발 중)", desc: "EasyYak 확장 기능. 독거노인 복약 완료 시 보호자에게 실시간 알림 전송. Firebase FCM 기반 앱 푸시 알림 개발 중.", tags: ["Firebase FCM", "Node.js", "Web Push", "Flutter"], link: null, linkText: null, accent: "#ff6b6b" },
