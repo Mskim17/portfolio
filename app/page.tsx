@@ -23,7 +23,7 @@ const skills = [
 const projects = [
   { num: "01", period: "2011.07 — 2014.12", name: "4대강 SCADA System 구축", desc: "강정고령보 등 16개보 중 4개보 담당. iFix 기반 대규모 산업용 제어시스템 개발. 수자원공사 의뢰.", company: "㈜사이버네이션\n수자원공사", tags: ["VBScript", "Oracle", "Windows Server 2008", "iFix", "HP Server"] },
   { num: "02", period: "2012.01 — 2013.12", name: "한국내화㈜ 공장자동화", desc: "ERP·MES 연동 및 Excel Report 구축. Autobase 기반 SCADA System으로 생산라인 자동화 실현.", company: "㈜사이버네이션\n한국내화㈜", tags: ["VBScript", "C#", "VB Basic", "MS-SQL", "Autobase"] },
-  { num: "03", period: "2015.01 — 2016.10", name: "IoT 미들웨어 개발", desc: "비글본 블랙 기반 Sensorcape 교육용 보드 개발. Azure, Thingplus 클라우드 연동 실시간 모니터링.", company: "㈜뉴로메카", tags: ["Node.js", "JavaScript", "PostgreSQL", "SQLite", "Azure", "Linux"] },
+  { num: "03", period: "2015.01 — 2016.10", name: "IoT 미들웨어 개발", desc: "비글본 블랙 기반 Sensorcape 교육용 보드 개발. Azure, Thingplus 클라우드 연동 실시간 모니터링. 비글본 에어 개발", company: "㈜뉴로메카", tags: ["Node.js", "JavaScript", "PostgreSQL", "SQLite", "Azure", "Linux"] },
   { num: "04", period: "2017.03 — 2019.05", name: "아파트 원패스 시스템 (IOP)", desc: "스마트폰 기반 공동현관 출입·비상벨·주차위치 확인. 엘리베이터·홈넷·스마트폰 연동 서버 개발.", company: "㈜투윈스컴", tags: ["WPF", "Node.js", "PostgreSQL", "Windows 10"] },
   { num: "05", period: "2019.08 — 2020.03", name: "WMS 유지보수 및 연동 개발", desc: "창고관리시스템(WMS) 유지보수 및 외부 시스템 연동 개발.", company: "㈜로지스밸리SLK", tags: ["C#", "MS-SQL", "Windows 10"] },
   { num: "06", period: "2020.04 — 2020.10", name: "양액기·관비기 스마트팜 개발", desc: "농기기 연동 모니터링 및 제어 시스템 개발. 스마트폰 기반 실시간 원격 제어 웹서버 구축.", company: "㈜그린랩스", tags: ["Node.js", "React", "MariaDB", "Windows 10"] },
