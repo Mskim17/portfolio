@@ -224,7 +224,7 @@ export default function Home() {
                 { icon: "🌙", label: "만세력 기반 운세", sub: "manse-fortune.vercel.app", href: "https://manse-fortune.vercel.app" },
                 { icon: "📍", label: "Signal Checker | 통신 속도 기록", sub: "signal-checker.vercel.app", href: "https://signal-checker.vercel.app" },
                 { icon: "💊", label: "EasyYak 서비스", sub: "mskhouse.iptime.org:9918", href: "http://mskhouse.iptime.org:9918" },
-                { icon: "🌡️", label: "홈 IoT 대시보드", sub: "mskhouse.iptime.org:3324", href: "http://mskhouse.iptime.org:3324" },
+                { icon: "🌡️", label: "홈 IoT 대시보드", sub: "https://msk-dashboard.vercel.app/", href: "https://msk-dashboard.vercel.app/" },
                 { icon: "🐙", label: "GitHub", sub: "github.com/Mskim17", href: "https://github.com/Mskim17" },
               ].map((c) => (
                 <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
